@@ -22,4 +22,13 @@ class Curator
     @artists.find { |artist| artist.id == id  }
   end
 
+  def photographs_by_artist
+    @artists.reduce({}) do |photo_by_artists, artist|
+      photo_by_artists[artist] = @photographs.find_all do |photo|
+        photo.artist_id == artist.id
+      end
+      photo_by_artists
+    end
+  end
+
 end
