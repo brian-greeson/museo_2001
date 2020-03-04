@@ -280,4 +280,13 @@ class CuratorTest < Minitest::Test
     assert_equal 4, curator.photographs.length
     assert_equal "Moonrise, Hernandez", curator.photographs[1].name
   end
+
+  def test_it_can_load_artists_from_file
+    curator = Curator.new
+
+    curator.load_artists('./data/artists.csv')
+
+    assert_equal 6, curator.artists.length
+    assert_equal "Ansel Adams", curator.artists[1].name
+  end
 end
