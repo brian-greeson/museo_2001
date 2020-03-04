@@ -34,7 +34,7 @@ class CuratorTest < Minitest::Test
     curator.add_photograph(photo_1)
     curator.add_photograph(photo_2)
 
-    assert_equal [photo1, photo_2], curator.photographs
+    assert_equal [photo_1, photo_2], curator.photographs
   end
 
 end
