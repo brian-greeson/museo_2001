@@ -2,12 +2,10 @@ require "minitest/autorun"
 require "mocha/minitest"
 require "./lib/photograph"
 
-
 class PhotographTest < Minitest::Test
 
   def test_it_exists
-    attributes = {}
-    assert_instance_of Photograph, Photograph.new(attributes)
+    assert_instance_of Photograph, Photograph.new({})
   end
 
   def test_it_has_attributes
