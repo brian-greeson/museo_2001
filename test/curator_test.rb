@@ -278,7 +278,10 @@ class CuratorTest < Minitest::Test
     curator.load_photographs('./data/photographs.csv')
 
     assert_equal 4, curator.photographs.length
+    assert_equal "2", curator.photographs[1].id
     assert_equal "Moonrise, Hernandez", curator.photographs[1].name
+    assert_equal "2", curator.photographs[1].artist_id
+    assert_equal "1941", curator.photographs[1].year
   end
 
   def test_it_can_load_artists_from_file
@@ -287,6 +290,10 @@ class CuratorTest < Minitest::Test
     curator.load_artists('./data/artists.csv')
 
     assert_equal 6, curator.artists.length
+    assert_equal "2", curator.artists[1].id
     assert_equal "Ansel Adams", curator.artists[1].name
+    assert_equal "1902", curator.artists[1].born
+    assert_equal "1984", curator.artists[1].died
+    assert_equal "United States", curator.artists[1].country
   end
 end
