@@ -36,4 +36,11 @@ class Curator
     artists.keys.map { |artist| artist.name }
   end
 
+  def photographs_taken_by_artist_from(country)
+    artists_photos = photographs_by_artist.select do |artist, photos|
+      artist.country == country
+    end
+    artists_photos.values.flatten
+  end
+
 end
