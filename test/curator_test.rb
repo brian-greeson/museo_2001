@@ -307,14 +307,14 @@ class CuratorTest < Minitest::Test
                                year: "1954"
                             })
     photo_2 = Photograph.new({
-                               id: 4,
+                               id: "4",
                                name: "Child with Toy Hand Grenade in Central Park",
                                artist_id: "3",
                                year: "1962"
                             })
 
-    expected = [photo_1, photo_2]
-
-    assert_equal expected, curator.photographs_taken_between(1950..1965)
+    assert_equal 2, curator.photographs_taken_between(1950..1965).length
+    assert_equal photo_1.id, curator.photographs_taken_between(1950..1965).first.id
+    assert_equal photo_2.id, curator.photographs_taken_between(1950..1965).last.id
   end
 end
