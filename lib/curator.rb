@@ -1,5 +1,6 @@
 require "./lib/photograph"
 require "./lib/artist"
+require "CSV"
 
 class Curator
   attr_reader :photographs, :artists
@@ -41,6 +42,12 @@ class Curator
       artist.country == country
     end
     artists_photos.values.flatten
+  end
+
+  def load_photographs(filepath)
+    CSV.foreach(filepath, {headers: true, header_converters: :symbol}) do |row|
+      @photographs << Photograph.new(row.to_hash)
+    end
   end
 
 end
