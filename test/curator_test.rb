@@ -286,7 +286,6 @@ class CuratorTest < Minitest::Test
 
   def test_it_can_load_artists_from_file
     curator = Curator.new
-
     curator.load_artists('./data/artists.csv')
 
     assert_equal 6, curator.artists.length
@@ -295,5 +294,27 @@ class CuratorTest < Minitest::Test
     assert_equal "1902", curator.artists[1].born
     assert_equal "1984", curator.artists[1].died
     assert_equal "United States", curator.artists[1].country
+  end
+
+  def test_it_lists_photos_taken_within_range
+    curator = Curator.new
+    curator.load_photographs('./data/photographs.csv')
+    curator.load_artists('./data/artists.csv')
+    photo_1 = Photograph.new({
+                               id: "1",
+                               name: "Rue Mouffetard, Paris (Boy with Bottles)",
+                               artist_id: "1",
+                               year: "1954"
+                            })
+    photo_2 = Photograph.new({
+                               id: 4,
+                               name: "Child with Toy Hand Grenade in Central Park",
+                               artist_id: "3",
+                               year: "1962"
+                            })
+
+    expected = [photo_1, photo_2]
+
+    assert_equal expected, curator.photographs_taken_between(1950..1965)
   end
 end
