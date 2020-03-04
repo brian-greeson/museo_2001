@@ -16,7 +16,6 @@ class CuratorTest < Minitest::Test
 
   def test_it_can_add_photos
     curator = Curator.new
-
     photo_1 = Photograph.new({
                               id: "1",
                               name: "Rue Mouffetard, Paris (Boy with Bottles)",
@@ -35,6 +34,12 @@ class CuratorTest < Minitest::Test
     curator.add_photograph(photo_2)
 
     assert_equal [photo_1, photo_2], curator.photographs
+  end
+
+  def test_it_starts_without_artists
+      curator = Curator.new
+
+      assert_equal [], curator.artists
   end
 
 end
