@@ -31,4 +31,9 @@ class Curator
     end
   end
 
+  def artists_with_multiple_photographs
+    artists = photographs_by_artist.select { |artist, photos| photos.length > 1 }
+    artists.keys.map { |artist| artist.name }
+  end
+
 end
