@@ -50,4 +50,10 @@ class Curator
     end
   end
 
+  def load_artists(filepath)
+    CSV.foreach(filepath, {headers: true, header_converters: :symbol}) do |row|
+      @artists << Artist.new(row.to_hash)
+    end
+  end
+
 end
